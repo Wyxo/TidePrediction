@@ -1,0 +1,842 @@
+[
+    {
+        "n_trees": 100,
+        "n_args": 3,
+        "max_depth": 10,
+        "test_error": 3.5641563130301677,
+        "train_error": 1.709851718124821
+    },
+    {
+        "n_trees": 50,
+        "n_args": 3,
+        "max_depth": 10,
+        "test_error": 3.598935305913573,
+        "train_error": 1.7516465283333134
+    },
+    {
+        "n_trees": 100,
+        "n_args": 5,
+        "max_depth": 8,
+        "test_error": 3.6482221602412404,
+        "train_error": 2.040759540891009
+    },
+    {
+        "n_trees": 50,
+        "n_args": 5,
+        "max_depth": 10,
+        "test_error": 3.6631264285237912,
+        "train_error": 1.6031689146890162
+    },
+    {
+        "n_trees": 100,
+        "n_args": 7,
+        "max_depth": 10,
+        "test_error": 3.685767839857146,
+        "train_error": 1.5499711223624406
+    },
+    {
+        "n_trees": 100,
+        "n_args": 5,
+        "max_depth": 10,
+        "test_error": 3.719994068769803,
+        "train_error": 1.558896303384476
+    },
+    {
+        "n_trees": 50,
+        "n_args": 5,
+        "max_depth": 8,
+        "test_error": 3.7287367379371545,
+        "train_error": 2.0684403109121683
+    },
+    {
+        "n_trees": 20,
+        "n_args": 5,
+        "max_depth": 10,
+        "test_error": 3.732188221365843,
+        "train_error": 1.7058215117645403
+    },
+    {
+        "n_trees": 20,
+        "n_args": 3,
+        "max_depth": 10,
+        "test_error": 3.732440541262348,
+        "train_error": 1.90555676787737
+    },
+    {
+        "n_trees": 50,
+        "n_args": 7,
+        "max_depth": 10,
+        "test_error": 3.7822575294167415,
+        "train_error": 1.5605217600849948
+    },
+    {
+        "n_trees": 50,
+        "n_args": 3,
+        "max_depth": 8,
+        "test_error": 3.7841288727340396,
+        "train_error": 2.3008684498761114
+    },
+    {
+        "n_trees": 50,
+        "n_args": 7,
+        "max_depth": 8,
+        "test_error": 3.790332452693008,
+        "train_error": 1.991947238125082
+    },
+    {
+        "n_trees": 20,
+        "n_args": 7,
+        "max_depth": 10,
+        "test_error": 3.803998432804588,
+        "train_error": 1.699428953637118
+    },
+    {
+        "n_trees": 100,
+        "n_args": 3,
+        "max_depth": 8,
+        "test_error": 3.8179276414888563,
+        "train_error": 2.2800694185638557
+    },
+    {
+        "n_trees": 100,
+        "n_args": 7,
+        "max_depth": 8,
+        "test_error": 3.88977939335624,
+        "train_error": 1.927865795397744
+    },
+    {
+        "n_trees": 20,
+        "n_args": 5,
+        "max_depth": 8,
+        "test_error": 3.8913425394770913,
+        "train_error": 2.1402623874959588
+    },
+    {
+        "n_trees": 10,
+        "n_args": 5,
+        "max_depth": 8,
+        "test_error": 3.8946366897601985,
+        "train_error": 2.29896683604774
+    },
+    {
+        "n_trees": 10,
+        "n_args": 7,
+        "max_depth": 8,
+        "test_error": 3.916419127046782,
+        "train_error": 2.2043517744284573
+    },
+    {
+        "n_trees": 20,
+        "n_args": 7,
+        "max_depth": 8,
+        "test_error": 3.926758187180453,
+        "train_error": 2.063310555964251
+    },
+    {
+        "n_trees": 10,
+        "n_args": 7,
+        "max_depth": 10,
+        "test_error": 3.9543929797571877,
+        "train_error": 1.8169281895153637
+    },
+    {
+        "n_trees": 20,
+        "n_args": 3,
+        "max_depth": 8,
+        "test_error": 3.9831484620855577,
+        "train_error": 2.4567629563486095
+    },
+    {
+        "n_trees": 10,
+        "n_args": 5,
+        "max_depth": 10,
+        "test_error": 3.9844650748774733,
+        "train_error": 1.8695430788011542
+    },
+    {
+        "n_trees": 100,
+        "n_args": 7,
+        "max_depth": 6,
+        "test_error": 4.0303958034322935,
+        "train_error": 2.9029682652017366
+    },
+    {
+        "n_trees": 10,
+        "n_args": 3,
+        "max_depth": 10,
+        "test_error": 4.034750119977143,
+        "train_error": 2.1351217995276057
+    },
+    {
+        "n_trees": 100,
+        "n_args": 5,
+        "max_depth": 6,
+        "test_error": 4.051979187563171,
+        "train_error": 2.97970321244919
+    },
+    {
+        "n_trees": 50,
+        "n_args": 5,
+        "max_depth": 6,
+        "test_error": 4.128956154230932,
+        "train_error": 3.01658687087932
+    },
+    {
+        "n_trees": 20,
+        "n_args": 5,
+        "max_depth": 6,
+        "test_error": 4.173208015081539,
+        "train_error": 3.0705844170275394
+    },
+    {
+        "n_trees": 10,
+        "n_args": 3,
+        "max_depth": 8,
+        "test_error": 4.198727388182165,
+        "train_error": 2.7357943982407584
+    },
+    {
+        "n_trees": 5,
+        "n_args": 7,
+        "max_depth": 10,
+        "test_error": 4.216063888180004,
+        "train_error": 2.089899377660239
+    },
+    {
+        "n_trees": 5,
+        "n_args": 5,
+        "max_depth": 10,
+        "test_error": 4.216434181622126,
+        "train_error": 2.1385021939975326
+    },
+    {
+        "n_trees": 20,
+        "n_args": 7,
+        "max_depth": 6,
+        "test_error": 4.224564987182971,
+        "train_error": 2.9892656438388103
+    },
+    {
+        "n_trees": 50,
+        "n_args": 7,
+        "max_depth": 6,
+        "test_error": 4.244959219091761,
+        "train_error": 2.926649876624503
+    },
+    {
+        "n_trees": 100,
+        "n_args": 3,
+        "max_depth": 6,
+        "test_error": 4.247092558846155,
+        "train_error": 3.32709982028816
+    },
+    {
+        "n_trees": 5,
+        "n_args": 5,
+        "max_depth": 8,
+        "test_error": 4.308579689120111,
+        "train_error": 2.5315909964601384
+    },
+    {
+        "n_trees": 5,
+        "n_args": 7,
+        "max_depth": 8,
+        "test_error": 4.339794832935227,
+        "train_error": 2.473260111909556
+    },
+    {
+        "n_trees": 10,
+        "n_args": 5,
+        "max_depth": 6,
+        "test_error": 4.349019336267105,
+        "train_error": 3.2213824228137122
+    },
+    {
+        "n_trees": 10,
+        "n_args": 7,
+        "max_depth": 6,
+        "test_error": 4.399633609358089,
+        "train_error": 3.0796481007469247
+    },
+    {
+        "n_trees": 5,
+        "n_args": 3,
+        "max_depth": 10,
+        "test_error": 4.440479401212433,
+        "train_error": 2.4498793512969304
+    },
+    {
+        "n_trees": 50,
+        "n_args": 3,
+        "max_depth": 6,
+        "test_error": 4.458987267654183,
+        "train_error": 3.34893906687934
+    },
+    {
+        "n_trees": 20,
+        "n_args": 3,
+        "max_depth": 6,
+        "test_error": 4.473609942186917,
+        "train_error": 3.456876107459871
+    },
+    {
+        "n_trees": 5,
+        "n_args": 3,
+        "max_depth": 8,
+        "test_error": 4.541698594863514,
+        "train_error": 2.9351247278922394
+    },
+    {
+        "n_trees": 5,
+        "n_args": 5,
+        "max_depth": 6,
+        "test_error": 4.556604000766805,
+        "train_error": 3.41402355068289
+    },
+    {
+        "n_trees": 5,
+        "n_args": 7,
+        "max_depth": 6,
+        "test_error": 4.631366216634317,
+        "train_error": 3.308310352095132
+    },
+    {
+        "n_trees": 10,
+        "n_args": 3,
+        "max_depth": 6,
+        "test_error": 4.680681197360796,
+        "train_error": 3.652751816903593
+    },
+    {
+        "n_trees": 100,
+        "n_args": 5,
+        "max_depth": 4,
+        "test_error": 5.057932956653245,
+        "train_error": 4.530385060717039
+    },
+    {
+        "n_trees": 20,
+        "n_args": 5,
+        "max_depth": 4,
+        "test_error": 5.139631019921421,
+        "train_error": 4.59927372291352
+    },
+    {
+        "n_trees": 20,
+        "n_args": 7,
+        "max_depth": 4,
+        "test_error": 5.19406715865074,
+        "train_error": 4.645834249764665
+    },
+    {
+        "n_trees": 100,
+        "n_args": 7,
+        "max_depth": 4,
+        "test_error": 5.196181795625091,
+        "train_error": 4.56343917825439
+    },
+    {
+        "n_trees": 50,
+        "n_args": 5,
+        "max_depth": 4,
+        "test_error": 5.2157456008535625,
+        "train_error": 4.534339896856294
+    },
+    {
+        "n_trees": 50,
+        "n_args": 7,
+        "max_depth": 4,
+        "test_error": 5.2539755939585,
+        "train_error": 4.579831813033452
+    },
+    {
+        "n_trees": 5,
+        "n_args": 3,
+        "max_depth": 6,
+        "test_error": 5.272867896642921,
+        "train_error": 4.10036199993748
+    },
+    {
+        "n_trees": 10,
+        "n_args": 7,
+        "max_depth": 4,
+        "test_error": 5.333616015909396,
+        "train_error": 4.714821036159019
+    },
+    {
+        "n_trees": 10,
+        "n_args": 5,
+        "max_depth": 4,
+        "test_error": 5.391676188136951,
+        "train_error": 4.724856946553589
+    },
+    {
+        "n_trees": 100,
+        "n_args": 3,
+        "max_depth": 4,
+        "test_error": 5.534378324868713,
+        "train_error": 5.0192894348298385
+    },
+    {
+        "n_trees": 5,
+        "n_args": 5,
+        "max_depth": 4,
+        "test_error": 5.580316109214225,
+        "train_error": 4.910953513285637
+    },
+    {
+        "n_trees": 5,
+        "n_args": 7,
+        "max_depth": 4,
+        "test_error": 5.589790455733902,
+        "train_error": 4.885376413834284
+    },
+    {
+        "n_trees": 50,
+        "n_args": 3,
+        "max_depth": 4,
+        "test_error": 5.652994167293832,
+        "train_error": 5.09005437573107
+    },
+    {
+        "n_trees": 1,
+        "n_args": 7,
+        "max_depth": 8,
+        "test_error": 5.773802583484409,
+        "train_error": 3.9770996044427194
+    },
+    {
+        "n_trees": 1,
+        "n_args": 7,
+        "max_depth": 6,
+        "test_error": 5.815230427164928,
+        "train_error": 4.63499404106814
+    },
+    {
+        "n_trees": 1,
+        "n_args": 7,
+        "max_depth": 10,
+        "test_error": 5.84841148008592,
+        "train_error": 3.7310766662106998
+    },
+    {
+        "n_trees": 20,
+        "n_args": 3,
+        "max_depth": 4,
+        "test_error": 5.887719165250454,
+        "train_error": 5.2304427720311155
+    },
+    {
+        "n_trees": 100,
+        "n_args": 1,
+        "max_depth": 10,
+        "test_error": 6.001384567862123,
+        "train_error": 3.8406076794420505
+    },
+    {
+        "n_trees": 1,
+        "n_args": 5,
+        "max_depth": 8,
+        "test_error": 6.037335924633078,
+        "train_error": 4.177277536806423
+    },
+    {
+        "n_trees": 1,
+        "n_args": 5,
+        "max_depth": 10,
+        "test_error": 6.068581450642631,
+        "train_error": 3.78136559647983
+    },
+    {
+        "n_trees": 50,
+        "n_args": 1,
+        "max_depth": 10,
+        "test_error": 6.105019937335477,
+        "train_error": 3.925429021426319
+    },
+    {
+        "n_trees": 10,
+        "n_args": 3,
+        "max_depth": 4,
+        "test_error": 6.16259485213422,
+        "train_error": 5.59548124287836
+    },
+    {
+        "n_trees": 1,
+        "n_args": 5,
+        "max_depth": 6,
+        "test_error": 6.169177161423212,
+        "train_error": 4.992691568912958
+    },
+    {
+        "n_trees": 5,
+        "n_args": 3,
+        "max_depth": 4,
+        "test_error": 6.30956112714882,
+        "train_error": 5.7884107425713385
+    },
+    {
+        "n_trees": 1,
+        "n_args": 3,
+        "max_depth": 8,
+        "test_error": 6.366810897756611,
+        "train_error": 4.518403567617777
+    },
+    {
+        "n_trees": 20,
+        "n_args": 1,
+        "max_depth": 10,
+        "test_error": 6.403735626899687,
+        "train_error": 4.241970496847776
+    },
+    {
+        "n_trees": 10,
+        "n_args": 1,
+        "max_depth": 10,
+        "test_error": 6.506541425629541,
+        "train_error": 4.342417584010329
+    },
+    {
+        "n_trees": 100,
+        "n_args": 1,
+        "max_depth": 8,
+        "test_error": 6.759039344795562,
+        "train_error": 5.24487269754601
+    },
+    {
+        "n_trees": 1,
+        "n_args": 7,
+        "max_depth": 4,
+        "test_error": 6.7901763747738455,
+        "train_error": 6.045060356243147
+    },
+    {
+        "n_trees": 1,
+        "n_args": 3,
+        "max_depth": 10,
+        "test_error": 6.796407846647282,
+        "train_error": 4.500435550896894
+    },
+    {
+        "n_trees": 1,
+        "n_args": 5,
+        "max_depth": 4,
+        "test_error": 6.912243747733217,
+        "train_error": 6.2763258322005795
+    },
+    {
+        "n_trees": 50,
+        "n_args": 1,
+        "max_depth": 8,
+        "test_error": 6.957274038316643,
+        "train_error": 5.34681704239795
+    },
+    {
+        "n_trees": 20,
+        "n_args": 1,
+        "max_depth": 8,
+        "test_error": 7.0303693623808785,
+        "train_error": 5.470951265425998
+    },
+    {
+        "n_trees": 1,
+        "n_args": 3,
+        "max_depth": 6,
+        "test_error": 7.073348136078208,
+        "train_error": 5.784291526949545
+    },
+    {
+        "n_trees": 100,
+        "n_args": 5,
+        "max_depth": 2,
+        "test_error": 7.2874632979306595,
+        "train_error": 7.050722838725473
+    },
+    {
+        "n_trees": 10,
+        "n_args": 1,
+        "max_depth": 8,
+        "test_error": 7.394161576261572,
+        "train_error": 5.791060191831536
+    },
+    {
+        "n_trees": 20,
+        "n_args": 5,
+        "max_depth": 2,
+        "test_error": 7.428923283360595,
+        "train_error": 7.120305411788581
+    },
+    {
+        "n_trees": 50,
+        "n_args": 5,
+        "max_depth": 2,
+        "test_error": 7.461995361494418,
+        "train_error": 7.051657137865947
+    },
+    {
+        "n_trees": 20,
+        "n_args": 7,
+        "max_depth": 2,
+        "test_error": 7.505349774891006,
+        "train_error": 7.17914132838464
+    },
+    {
+        "n_trees": 10,
+        "n_args": 5,
+        "max_depth": 2,
+        "test_error": 7.569274557205648,
+        "train_error": 7.21289326266889
+    },
+    {
+        "n_trees": 10,
+        "n_args": 7,
+        "max_depth": 2,
+        "test_error": 7.574510567386343,
+        "train_error": 7.279373257924138
+    },
+    {
+        "n_trees": 100,
+        "n_args": 7,
+        "max_depth": 2,
+        "test_error": 7.6081290469642395,
+        "train_error": 7.2241352985516825
+    },
+    {
+        "n_trees": 50,
+        "n_args": 7,
+        "max_depth": 2,
+        "test_error": 7.650054418215393,
+        "train_error": 7.244347793718134
+    },
+    {
+        "n_trees": 5,
+        "n_args": 7,
+        "max_depth": 2,
+        "test_error": 7.696321655785593,
+        "train_error": 7.337028261599125
+    },
+    {
+        "n_trees": 5,
+        "n_args": 5,
+        "max_depth": 2,
+        "test_error": 7.723255449581504,
+        "train_error": 7.326003978020205
+    },
+    {
+        "n_trees": 5,
+        "n_args": 1,
+        "max_depth": 10,
+        "test_error": 7.822821588684713,
+        "train_error": 5.195684117541397
+    },
+    {
+        "n_trees": 5,
+        "n_args": 1,
+        "max_depth": 8,
+        "test_error": 7.837720127283016,
+        "train_error": 6.046404736602555
+    },
+    {
+        "n_trees": 100,
+        "n_args": 1,
+        "max_depth": 6,
+        "test_error": 8.250687413492116,
+        "train_error": 7.224023489434321
+    },
+    {
+        "n_trees": 50,
+        "n_args": 3,
+        "max_depth": 2,
+        "test_error": 8.33891642124683,
+        "train_error": 8.155160413319765
+    },
+    {
+        "n_trees": 100,
+        "n_args": 3,
+        "max_depth": 2,
+        "test_error": 8.376082946195838,
+        "train_error": 8.137929988355303
+    },
+    {
+        "n_trees": 20,
+        "n_args": 3,
+        "max_depth": 2,
+        "test_error": 8.409396793944344,
+        "train_error": 8.199708588567532
+    },
+    {
+        "n_trees": 1,
+        "n_args": 7,
+        "max_depth": 2,
+        "test_error": 8.424516662233945,
+        "train_error": 8.000419576833783
+    },
+    {
+        "n_trees": 50,
+        "n_args": 1,
+        "max_depth": 6,
+        "test_error": 8.461324937099093,
+        "train_error": 7.548140282632619
+    },
+    {
+        "n_trees": 20,
+        "n_args": 1,
+        "max_depth": 6,
+        "test_error": 8.618385817715255,
+        "train_error": 7.480293259520886
+    },
+    {
+        "n_trees": 10,
+        "n_args": 3,
+        "max_depth": 2,
+        "test_error": 8.69949744908489,
+        "train_error": 8.429580032377336
+    },
+    {
+        "n_trees": 10,
+        "n_args": 1,
+        "max_depth": 6,
+        "test_error": 8.756439959827958,
+        "train_error": 7.6636816815119975
+    },
+    {
+        "n_trees": 5,
+        "n_args": 3,
+        "max_depth": 2,
+        "test_error": 9.36181187697222,
+        "train_error": 9.10543229929701
+    },
+    {
+        "n_trees": 5,
+        "n_args": 1,
+        "max_depth": 6,
+        "test_error": 9.563879474314588,
+        "train_error": 8.465381553043084
+    },
+    {
+        "n_trees": 1,
+        "n_args": 5,
+        "max_depth": 2,
+        "test_error": 9.902853018531466,
+        "train_error": 9.674953796667111
+    },
+    {
+        "n_trees": 10,
+        "n_args": 1,
+        "max_depth": 4,
+        "test_error": 10.153524030284759,
+        "train_error": 9.366688455306729
+    },
+    {
+        "n_trees": 50,
+        "n_args": 1,
+        "max_depth": 4,
+        "test_error": 10.369542564411978,
+        "train_error": 9.644388370084599
+    },
+    {
+        "n_trees": 5,
+        "n_args": 1,
+        "max_depth": 4,
+        "test_error": 10.583930326029385,
+        "train_error": 10.33272468659446
+    },
+    {
+        "n_trees": 100,
+        "n_args": 1,
+        "max_depth": 4,
+        "test_error": 10.620468396101078,
+        "train_error": 10.00516767979229
+    },
+    {
+        "n_trees": 1,
+        "n_args": 3,
+        "max_depth": 2,
+        "test_error": 10.81051383003515,
+        "train_error": 10.626491644510022
+    },
+    {
+        "n_trees": 1,
+        "n_args": 3,
+        "max_depth": 4,
+        "test_error": 10.854236926960585,
+        "train_error": 10.210089028222217
+    },
+    {
+        "n_trees": 20,
+        "n_args": 1,
+        "max_depth": 4,
+        "test_error": 11.716895545413617,
+        "train_error": 10.921617444324209
+    },
+    {
+        "n_trees": 1,
+        "n_args": 1,
+        "max_depth": 6,
+        "test_error": 11.766916782628034,
+        "train_error": 9.953588730019934
+    },
+    {
+        "n_trees": 1,
+        "n_args": 1,
+        "max_depth": 10,
+        "test_error": 12.439976424584865,
+        "train_error": 9.34480203131076
+    },
+    {
+        "n_trees": 1,
+        "n_args": 1,
+        "max_depth": 8,
+        "test_error": 13.255212874824892,
+        "train_error": 10.853953037023441
+    },
+    {
+        "n_trees": 50,
+        "n_args": 1,
+        "max_depth": 2,
+        "test_error": 13.433122220359655,
+        "train_error": 13.21814439534092
+    },
+    {
+        "n_trees": 20,
+        "n_args": 1,
+        "max_depth": 2,
+        "test_error": 13.564546812788944,
+        "train_error": 13.339013482370792
+    },
+    {
+        "n_trees": 10,
+        "n_args": 1,
+        "max_depth": 2,
+        "test_error": 14.048844305351547,
+        "train_error": 13.910545319346927
+    },
+    {
+        "n_trees": 100,
+        "n_args": 1,
+        "max_depth": 2,
+        "test_error": 14.10766671979197,
+        "train_error": 13.703787692684665
+    },
+    {
+        "n_trees": 5,
+        "n_args": 1,
+        "max_depth": 2,
+        "test_error": 14.510656408934599,
+        "train_error": 14.241500180933434
+    },
+    {
+        "n_trees": 1,
+        "n_args": 1,
+        "max_depth": 4,
+        "test_error": 15.32422200033343,
+        "train_error": 14.559688991976728
+    },
+    {
+        "n_trees": 1,
+        "n_args": 1,
+        "max_depth": 2,
+        "test_error": 15.95623444145063,
+        "train_error": 15.907132394111798
+    }
+]

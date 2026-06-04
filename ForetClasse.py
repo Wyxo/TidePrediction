@@ -1,8 +1,12 @@
+#!/home/araulin/venv_python/bin/python
+
 from math import log2
 import numpy as np
 from random import *
 from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt
 import time
+import csv
 
 ## Criterion
 
@@ -11,25 +15,25 @@ class Criterion:
     def initialize(self, ySorted):
         pass
     
-    def move_sample(self, y):
+    def moveSample(self, y):
         pass
     def score(self):
         pass
+    def output(self, ySorted):
+        pass
     
-
 class VarianceCriterion(Criterion):
     def initialize(self, ySorted):
         self.N = len(ySorted)
-
         self.leftN = 0 
         self.leftSum = 0 
         self.leftSum2 = 0
 
         self.rightN = self.N
-        self.rightSum = np.sum(ySorted)
-        self.rightSum2 = np.sum(ySorted**2)
+        self.rightSum = np.sum(np.array(ySorted))
+        self.rightSum2 = np.sum(np.array(ySorted)**2)
     
-    def move_sample(self, y):
+    def moveSample(self, y):
         self.leftN += 1
         self.rightN -= 1
 
@@ -45,6 +49,8 @@ class VarianceCriterion(Criterion):
         varianceLeft = self.leftSum2/self.leftN  - (self.leftSum/self.leftN)**2 
         varianceRight = self.rightSum2/self.rightN  - (self.rightSum/self.rightN)**2 
         return -(varianceLeft*self.leftN + varianceRight*self.rightN)/self.N
+    def output(self, ySorted):
+        return np.mean(ySorted)
     
 class EntropyCriterion(Criterion):
     def initialize(self, ySorted):
@@ -59,7 +65,7 @@ class EntropyCriterion(Criterion):
         self.rightCount = self.N
         self.rightNumbers = np.array([np.sum(ySorted == c) for c in classes])
     
-    def move_sample(self, y):
+    def moveSample(self, y):
         self.leftCount += 1
         self.rightCount -= 1
 
@@ -71,6 +77,9 @@ class EntropyCriterion(Criterion):
         entropyRight = entropy(self.rightNumbers/self.rightCount)
         return (entropyLeft*self.leftCount + entropyRight*self.rightCount)/self.N
     
+    def output(self, ySorted):
+        counts = np.bincount(ySorted.astype(int))
+        return np.argmax(counts)
 
 def entropy(probabilities):
     return np.sum(probabilities * np.log2(probabilities + 1e-10))
@@ -90,11 +99,8 @@ class Node :
 
         self.output = None
 
-#Dans toute la suite les classes sont des entiers de 0 à n_classes
-#Quitte à translater les coefficients de marée de 20
-
-class Arbre_de_decision :
-    def __init__(self, criterion, leafValue, maxDepth=10, minSamplesSplit=2, minSamplesLeaf=1):
+class DecisionTree :
+    def __init__(self, criterion, maxDepth=10, minSamplesSplit=2, minSamplesLeaf=1):
         self.max_depth = maxDepth
         self.minSamplesSplit = minSamplesSplit
         self.minSamplesLeaf = minSamplesLeaf
@@ -102,29 +108,23 @@ class Arbre_de_decision :
         self.root = None
 
         self.criterion = criterion
-        self.criterion = leafValue
-
-    def best_split(self, X, y, arg):
-        '''Renvoie l'index de l'argument, et le seuil correspondant, qui maximisent le gain d'information
-        parmi les exemples X. En cherchant parmi arg arguments choisis au hasard.'''
-        #Séparation si il y a assez d'élements
-
+        
+        self.tree = None
+    def best_split(self, X, y, numberOfArgs):
         N = len(y)
-        if N < self.minSamplesLeaf :
-            return None, None
 
-        #Initialisation
-        bestScore = -1000
-        bestIndex , bestThreshold = None, None
-        #Parcours des différents arguments avec un facteur aléatoire
-        attributs = sample([k for k in range(len(X[0]))], arg)
+        bestIndex , bestThreshold, bestScore = None, None, -1000
+        attributs = sample([k for k in range(len(X[0]))], numberOfArgs)
         for index in attributs :
-            #Tri des données selon l'argument que l'on observe
+            #Sort by the current attribute
             seuils, classes = zip(*sorted(zip(X[:, index], y)))
             self.criterion.initialize(classes)
-            #Test des potentielles séparations
-            for i in range(1, N):
-                self.criterion.move_sample(classes[i-1])
+            
+            for i in range(self.minSamplesLeaf, N-self.minSamplesLeaf):
+                self.criterion.moveSample(classes[i-1])
+                if seuils[i] == seuils[i-1]:
+                    continue
+                
                 score = self.criterion.score()
                 if score > bestScore :
                     bestScore = score
@@ -132,116 +132,147 @@ class Arbre_de_decision :
                     bestThreshold = (seuils[i] + seuils[i-1]) / 2 
         return bestIndex, bestThreshold, bestScore
 
-    def planting(self, X, y,arg,  depth=0):
-        '''Fonction qui va récursivement fabriquer l'abre décisionnel en se réappelant sur
-        les deux sous-ensembles de l'ensemble X, séparées suivant le meilleur seuil'''
+    def planting(self, X, y, numberOfArgs,  depth=0):
         m = y.size
         node = Node()
-
         node.depth = depth
         node.nSamples = m
-
+        if m <= self.minSamplesSplit :
+            node.output = self.criterion.output(y)
+            return node
+        
         if depth <= self.max_depth :
-            index, seuil, score = self.best_split(X, y, arg)
+            index, seuil, score = self.best_split(X, y, numberOfArgs)
             if index!= None :
-                #Tableau des indices des exemples dont le index-e argument est inférieur au seuil
                 indexLeft = X[:, index] < seuil
                 XLeft, yLeft = X[indexLeft] , y[indexLeft]
                 XRight, yRight = X[np.logical_not(indexLeft)], y[np.logical_not(indexLeft)]
+                
+                if len(yLeft) == 0 or len(yRight) == 0:
+                  node.output = self.criterion.output(y)
+                  return node
+                
                 node.featureIndex = index
                 node.featureThreshold = seuil
-                #Rappel de le fonction sur les deux sous-ensembles en incrémentant la profondeur
-                node.left = self.planting(XLeft, yLeft, arg,  depth + 1)
-                node.right = self.planting(XRight, yRight, arg,  depth + 1)
+
+                node.left = self.planting(XLeft, yLeft, numberOfArgs,  depth + 1)
+                node.right = self.planting(XRight, yRight, numberOfArgs,  depth + 1)
                 node.score = score
+            else :
+              node.output = self.criterion.output(y)
+        else:
+            node.output = self.criterion.output(y)      
         return node
 
-    def fit(self, X, y, arg):
-        self.tree = self.planting(X, y, arg)
+    def fit(self, X, y, numberOfArgs):
+        self.tree = self.planting(X, y, numberOfArgs)
         
-    def predict(self, input):
-        '''Parcourt l'arbre jusqu'à arriver à la feuille correspondante à l'entrée puis renvoie la valeur prédite'''
+    def prediction(self, input):
+        
         node = self.tree
         while node.left!= None :
-            if input[node.featureIndex] < node.threshold  :
+            if input[node.featureIndex] < node.featureThreshold  :
                 node = node.left
             else :
                 node = node.right
-        return node.classe_predite
+        return node.output
 
-    def prediction(self, X):
-        return [self.predict(entrees) for entrees in X]
+    def predictions(self, X):
+        return [self.prediction(entrees) for entrees in X]
     
-def bagging(data, nombre):
-    """Crée de nouveaux échantillons par tirage au hasard dans 
-    data, avec remise"""
-    échantillons = []
-    n = int(len(data)/3)
-    for k in range(nombre): 
-        D = []
-        for k in range(n):
-            i = randrange(0, n)
-            D += [data[i]]
-        échantillons += [D]
-    return échantillons
+def bagging(data, numerOfBags):
+    
+    samples = []
+    n = len(data)
+    for _ in range(numerOfBags): 
+        tempBag = []
+        for _ in range(n):
+            tempBag += [data[randrange(0, n)]]
+        samples += [tempBag]
+    return samples
     
     
-def foret(data, population, profondeur, taillemin, arg):
-    """Crée une forêt d'arbres, chacun développé sur un
-    sous échantillon du set de données initial"""
-    start = time.time()
-    foret = []
-    echantillons = bagging(data, population)
-    k = 0
-    for ech in echantillons :
-        a = Arbre_de_decision(profondeur, taillemin)
-        a.fit(np.array(ech)[:, :-1], np.array(ech)[:, -1], arg)
-        foret += [a]
-        k+=1
-    return time.time() - start
+def makeForest(data, numerOfTrees, numberOfArgs, criterion = VarianceCriterion(),  maxDepth = 10, minSampleSplit = 2, minSamplesLeaf = 1):
+    
+    forest = []
+    samples = bagging(data, numerOfTrees)
+    for sample in samples :
+        a = DecisionTree(criterion, maxDepth, minSampleSplit,minSamplesLeaf)
+        a.fit(np.array(sample)[:, :-1], np.array(sample)[:, -1], numberOfArgs)
+        forest += [a]
+    return forest
 
-def prediction_foret(foret, entrees) :
+def predictionForest(forest, inputs) :
     predit = []
-    m = len(foret)
-    for entre in entrees :
-        predit += [1/m * np.sum([arbre.predict(entre) for arbre in foret])]
+    m = len(forest)
+    for input in inputs :
+        predit += [1/m * np.sum([tree.prediction(input) for tree in forest])]
     return predit
     
-def modele(data, population, profondeur, taillemin, arg):
+def predictor(data, numerOfTrees, numberOfArgs, criterion = VarianceCriterion(), maxDepth = 8, minSampleSplit = 2, minSamplesLeaf = 1):
     '''Crée une forêt sur 3/4 des données, puis test la précision du modèle avec le 1/4
     restant. La fonction d'erreur employée est l'erreur moyenne'''
     train, test = train_test_split(data, test_size = 0.25)
-    foret = foret(train, population, profondeur, taillemin, arg)
-    erreur_train = erreur_test = 0
-    L1 = prediction_foret(foret, np.array(test)[:, :-1])
-    L2 = prediction_foret(foret, np.array(train)[:, :-1])
+    forest = makeForest(train, numerOfTrees, numberOfArgs, criterion, maxDepth, minSampleSplit, minSamplesLeaf)
+    erreurTrain = erreurTest = 0
+    L1 = predictionForest(forest, np.array(test)[:, :-1])
+    L2 = predictionForest(forest, np.array(train)[:, :-1])
     for k in range(len(L1)) :
-        erreur_test += abs(L1[k] - test[k][-1])
+        erreurTest += (L1[k] - test[k][-1])**2
     for k in range(len(L2)) :
-        erreur_train += abs(L2[k] - train[k][-1])
-    erreur_test = erreur_test/len(L1)
-    erreur_train = erreur_train/len(L2)
-    return foret, erreur_test, erreur_train
+        erreurTrain += (L2[k] - train[k][-1])**2
+    erreurTest = np.sqrt(erreurTest/len(L1))
+    erreurTrain = np.sqrt(erreurTrain/len(L2))
+    return forest, erreurTest, erreurTrain, L1, test
         
-def affichageArbre(Arbre, espace = 0):
+def printTree(tree, espace = 0):
     '''Implémentation sommaire permettant la visualisation de petits arbres'''
     if espace ==0 :
-        noeud = Arbre.arbre
+        node = tree.tree
     else : 
-        noeud = Arbre
-    if noeud.gauche == noeud.droite == None :
-        print(" " * espace + "[" + str(noeud.classe_predite) + "]")
+        node = tree
+    if node.left == node.right == None :
+        print(" " * espace + "[{:.1f}]".format(node.output))
     else :
-        text = " " * espace + "[" + "X" + str(noeud.index) + " < " + str(noeud.seuil) + "]"
+        text = " " * espace + "[X{:.0f} {:.1f}]".format(node.featureIndex, node.featureThreshold)
         print(text)
-    if noeud.gauche !=None :
-        affichageArbre(noeud.gauche, espace + 2)
-    if noeud.droite !=None :
-        affichageArbre(noeud.droite, espace + 2)
-                  
-def jardinage(queue, echantillons ,profondeur, taillemin, arg):
-    for ech in echantillons :
-        a = Arbre_de_decision(profondeur,taillemin)
-        a.fit(np.array(ech)[:, :-1], np.array(ech)[:, -1], arg)
-        queue.put([a])
-    
+    if node.left !=None :
+        printTree(node.left, espace + 2)
+    if node.right !=None :
+        printTree(node.right, espace + 2)
+
+def readData(file):
+    donnees = csv.reader(file, delimiter=',')
+    k, X, Y=0, [], []
+    for k, ligne in enumerate(donnees):
+        if k == 0:
+            continue  # skip header
+        def f(i):
+            return float(ligne[i].replace(",", "."))
+        y = f(1)
+        #x = [1/f(4)**2, 1/f(7)**2,f(8),f(9), f(10), f(11), abs(f(12)), abs(f(15))]
+        x = [f(4), f(7), abs(f(12)), abs(f(15))]
+        x = [1/f(4)**2, 1/f(7)**2, f(8), f(9), f(10), f(11), abs(f(12))]
+        if k == 1:
+            print(y, x)
+        X.append(x)
+        Y.append(y)
+
+    X, Y = X[:2497], Y[2:]
+    for k in range(len(X)):
+        X[k] += [Y[k] - 20]
+    return np.array(X)
+
+if __name__ == "__main__":
+    file = open("data.csv","r")
+    data = readData(file)
+    numerOfTrees = 1
+    numberOfArgs = 6
+    maxDepth = 4
+    minSamplesSplit = 2
+    minSamplesLeaf = 1
+    criterion = VarianceCriterion()
+    forest, erreur_test, erreur_train, prediction, test = predictor(data, numerOfTrees, numberOfArgs, criterion, maxDepth, minSamplesSplit, minSamplesLeaf )
+    print("erreur test : ", erreur_test)
+    print("erreur train : ", erreur_train)
+    printTree(forest[0])
