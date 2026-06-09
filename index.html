@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,50 +7,43 @@
   <title>Tide Coefficient Prediction - ML Project</title>
 
   <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 
 <body>
 
-  <!-- NAVIGATION -->
+  <!-- NAVBAR -->
   <header class="navbar">
     <div class="logo">🌊 TideML</div>
-
     <nav>
       <a href="#about">Project</a>
       <a href="#method">Method</a>
+      <a href="#data">Data</a>
       <a href="#results">Results</a>
       <a href="#tech">Tech</a>
-      <a href="#links">Links</a>
     </nav>
   </header>
 
   <!-- HERO -->
 <section class="hero">
-  <div class="hero-content">
+  <div class="hero-title-row">
+    <img src="images/1280px-Mont-Saint-Michel_Drone_reduit-1.jpg" class="hero-img" alt="">
 
-    <div class="hero-title-row">
-      <img src="images/1280px-Mont-Saint-Michel_Drone_reduit-1.jpg" class="hero-img" alt="left image">
-
+    <div class="hero-text">
       <h1>Tide Coefficient Prediction using Random Forests</h1>
-
-      <img src="images/terre_lune_soleil.jpg" class="hero-img" alt="right image">
+      <p>
+        A machine learning project using celestial data from ephemerides and recorded daily tide coefficients
+        to predict tide coefficients using Random Forest methods.  
+        This project was developed as a first experience with machine learning in the context of engineering school competitive exams focused on ocean systems.
+      </p>
     </div>
 
-    <p>
-      A machine learning project using celestial data collected from "ephemerides" and recorded daily tide coefficients
-      to predict tide coefficients using random forest methods.
-    </p>
+    <img src="images/terre_lune_soleil.jpg" class="hero-img" alt="">
+  </div>
 
-    <div class="buttons">
-      <a class="btn primary" href="https://github.com/your-username/your-repo" target="_blank">
-        View on GitHub
-      </a>
-
-      <a class="btn secondary" href="#results">
-        Explore Results
-      </a>
-    </div>
-
+  <div class="buttons">
+    <a class="btn primary" href="https://github.com/your-username/your-repo">View on GitHub</a>
+    <a class="btn secondary" href="#results">Explore Results</a>
   </div>
 </section>
 
@@ -59,128 +51,134 @@
   <section id="about" class="section">
     <h2>Project Overview</h2>
 
-    <p>
-      This project explores the use of Random Forest regression to model and predict
-      tide coefficients based on astronomical features such as angular and radial positions
-      of the sun and the moon and discarding local features depending on the specificity of the 
-      city considered, here Brest and Le Havre.
-
-      This was a first experience with machine-learning methods, coding the classifier from scratch in the 
-      context of a project for the competitve exames of Engineer schools where the them was oceans.
-    </p>
+    <div class="card">
+      <p>
+        This project explores the use of Random Forest regression to model and predict tide coefficients
+        based on astronomical features such as angular and radial positions of the Sun and the Moon, while
+        discarding local features specific to the city considered, here Brest and Le Havre. This was a first
+        experience with machine learning methods, coding the model from scratch in the context of a project
+        for the competitive exams of engineering schools where the theme was oceans.
+      </p>
+    </div>
   </section>
 
   <!-- METHOD -->
   <section id="method" class="section">
     <h2>Methodology</h2>
 
-    <ul>
-      <li>Data collection and cleaning</li>
-      <li>Data engineering to ease the classifier job and improve accuracy</li>
-      <li>Training a Random Forest Regressor</li>
-      <li>Model evaluation (MAE, RMSE)</li>
-    </ul>
+    <div class="grid-2">
+
+      <div class="card">
+        <h3>Data Collection</h3>
+        <p>Daily ephemerides + tide coefficient records from French coastal cities.</p>
+      </div>
+
+      <div class="card">
+        <h3>Feature Engineering</h3>
+        <p>
+          Angular positions, distances, and interaction terms between Sun and Moon.
+          Periodic encoding using trigonometric functions.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Model</h3>
+        <p>Random Forest Regressor trained on engineered astronomical features.</p>
+      </div>
+
+      <div class="card">
+        <h3>Evaluation</h3>
+        <p>Metrics used: MAE and RMSE on unseen test data.</p>
+      </div>
+
+    </div>
   </section>
 
+  <!-- DATA -->
   <section id="data" class="section">
-    <h2>Data treatment</h2>
+    <h2>Data Treatment</h2>
 
-    <p>
+    <p class="card">
       The raw dataset consists of the celestial positions of the Moon and the Sun:
       \(\theta_S, \phi_S, R_{ST}, \theta_L, \phi_L, R_{LT}\),
       where \(R\) denotes the distance between the Earth and the corresponding celestial object,
       \(\theta\) is the ecliptic longitude, and \(\phi\) is the ecliptic latitude.
     </p>
 
-    <p>
-      From these raw variables, we construct more meaningful features.
-      Since angles are periodic, representing them directly can be problematic.
-    </p>
+    <div class="grid-3">
 
-    <ul>
-      <li>
-        We encode periodicity using trigonometric transformations:
-        \(\cos(\theta_S)\) and \(\cos(\theta_L)\).
-      </li>
-    </ul>
+      <div class="card">
+        <h3>Periodic Encoding</h3>
+        <p>
+          Since angles are periodic, representing them directly can be problematic, as 0° and 359° are almost
+          equivalent but completely different for the trees. We encode periodicity using trigonometric transformations:
+          \(\cos(\theta_S)\) and \(\cos(\theta_L)\).
+        </p>
+      </div>
 
-    <p>
-      Physical intuition suggests that tidal effects depend on the relative alignment of the Moon and the Sun.
-      When both are aligned, their contributions reinforce each other, leading to stronger tides.
-      When they are perpendicular, the effect is weaker.
-    </p>
+      <div class="card">
+        <h3>Physics Insight</h3>
+        <p>
+          Physical insights suggest that tidal effects depend on the relative alignment of the Moon and the Sun.
+          When both are aligned, their contributions reinforce each other, leading to stronger tides.
+          When they are perpendicular, the effect is weaker: we introduce \(\cos(\theta_S - \theta_L)\) to capture this
+          alignment effect.
+        </p>
+      </div>
 
-    <ul>
-      <li>
-        To capture this interaction, we introduce:
-        \(\cos(\theta_S - \theta_L)\).
-      </li>
-    </ul>
-    <p> 
-      With the same insights we could use the inverse of the distance squared as this is the term that appears
-      in Netwton's gravitationnal law but because we use decisions tree that only perform comparisons and
-      this function is monotonous it would not affect the predictions. 
-    </p>
+      <div class="card">
+        <h3>Inertia</h3>
+        <p>
+          Because of the ocean's inertia, the tides have a delay compared to their gravitational causes as depicted
+          in the results section. Therefore, we introduce a 2-day delay between inputs and outputs.
+        </p>
+      </div>
 
-    <p>
-      Concerning the outputs, we dispose of the daily tide coefficients of two french cities: le Have and Brest.
-      Here we will focus on Brest since they depend less on the local geometry of the sea. Still, as depicted in the results
-      we have to shift the coefficient from the celestial positions from about two days because of the ocean's inertia
-      that introduces delay between actual tides and their causes.
+    </div>
+
+    <p class="card" style="margin-top:15px;">
+      We could use the inverse of the squared distance, as this is the term that appears in Newton's gravitational law,
+      but because we use decision trees that only perform comparisons and this function is monotonic, it would not
+      affect the predictions.
     </p>
   </section>
 
   <!-- RESULTS -->
   <section id="results" class="section">
     <h2>Results</h2>
-    <p></p>
 
-    <p>Comparison between predicted and real tide coefficients:</p>
+    <div class="results-grid">
 
-    <img src="images/test_predictions.svg" alt="Predictions vs real values"/>
+      <div class="card">
+        <h3>Predictions vs Real</h3>
+        <img src="images/test_predictions.svg" alt="">
+      </div>
 
-    <p>Influence of the date of data: because of oceans' inertia, the important parameters are not the current 
-      configurations of the moon and the sun but rather the one 2 days ago as shown in the following graph:</p>
+      <div class="card">
+        <h3>Influence of Time Shift</h3>
+        <img src="images/influece_of_day.svg" alt="">
+      </div>
 
-    <img src="images/influece_of_day.svg" alt="day dependance" />
+    </div>
   </section>
 
   <!-- TECH -->
   <section id="tech" class="section">
     <h2>Technologies</h2>
 
-    <div class="tags">
-      <span>Python</span>
-      <span>Scikit-learn</span>
-      <span>NumPy</span>
-      <span>Matplotlib</span>
+    <div class="card">
+      <div class="tags">
+        <span>Python</span>
+        <span>Scikit-learn</span>
+        <span>NumPy</span>
+        <span>Matplotlib</span>
+      </div>
     </div>
-  </section>
-
-  <!-- LINKS -->
-  <section id="links" class="section">
-    <h2>Links</h2>
-
-    <a class="btn primary" href="https://github.com/your-username/your-repo" target="_blank">
-      GitHub Repository
-    </a>
-  </section>
-
-    <!-- RESSOURCES -->
-  <section id="links" class="section">
-    <h2>Ressources</h2>
-
-    <ul>
-      <li>Machine learning methods book: </li>
-      <li>Meteo-France</li>
-      <li>Ephemerides</li>
-    </ul>
   </section>
 
   <footer>
     <p>© 2026 TideML Project</p>
   </footer>
 
-  <script src="script.js"></script>
 </body>
 </html>
