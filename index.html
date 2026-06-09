@@ -30,8 +30,8 @@
       <h1>Tide Coefficient Prediction using Random Forests</h1>
 
       <p>
-        A machine learning project leveraging environmental and temporal data
-        to predict tide coefficients using ensemble learning methods.
+        A machine learning project using celestial data collected from "ephemerides"and recorded daily tide coefficients
+        to predict tide coefficients using random forest methods.
       </p>
 
       <div class="buttons">
@@ -52,8 +52,12 @@
 
     <p>
       This project explores the use of Random Forest regression to model and predict
-      tide coefficients based on historical and astronomical features such as time,
-      lunar cycle, and environmental conditions.
+      tide coefficients based on astronomical features such as angular and radial positions
+      of the sun and the moon and discarding local features depending on the specificity of the 
+      city considered, here Brest and Le Havre.
+
+      This was a first experience with machine-learning methods, coding the classifier from scratch in the 
+      context of a project for the competitve exames of Engineer schools where the them was oceans.
     </p>
   </section>
 
@@ -63,7 +67,7 @@
 
     <ul>
       <li>Data collection and cleaning</li>
-      <li>Feature engineering (time-based and astronomical variables)</li>
+      <li>Data engineering to ease the classifier job and improve accuracy</li>
       <li>Training a Random Forest Regressor</li>
       <li>Model evaluation (MAE, RMSE)</li>
     </ul>
@@ -75,7 +79,7 @@
 
     <p>Comparison between predicted and real tide coefficients:</p>
 
-    <img src="images/predictions.png" alt="Predictions vs real values" />
+    <img src="images/test_predictions.svg" alt="Predictions vs real values" height="87"  width="100"/>
 
     <p>Feature importance analysis:</p>
 
@@ -89,7 +93,6 @@
     <div class="tags">
       <span>Python</span>
       <span>Scikit-learn</span>
-      <span>Pandas</span>
       <span>NumPy</span>
       <span>Matplotlib</span>
     </div>
@@ -102,6 +105,17 @@
     <a class="btn primary" href="https://github.com/your-username/your-repo" target="_blank">
       GitHub Repository
     </a>
+  </section>
+
+    <!-- RESSOURCES -->
+  <section id="links" class="section">
+    <h2>Ressources</h2>
+
+    <ul>
+      <li>Machine learning methods book: </li>
+      <li>Meteo-France</li>
+      <li>Ephemerides</li>
+    </ul>
   </section>
 
   <footer>
