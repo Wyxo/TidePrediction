@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -25,26 +26,34 @@
   </header>
 
   <!-- HERO -->
-  <section class="hero">
-    <div class="hero-content">
+<section class="hero">
+  <div class="hero-content">
+
+    <div class="hero-title-row">
+      <img src="images/1280px-Mont-Saint-Michel_Drone_reduit-1.jpg" class="hero-img" alt="left image">
+
       <h1>Tide Coefficient Prediction using Random Forests</h1>
 
-      <p>
-        A machine learning project using celestial data collected from "ephemerides"and recorded daily tide coefficients
-        to predict tide coefficients using random forest methods.
-      </p>
-
-      <div class="buttons">
-        <a class="btn primary" href="https://github.com/your-username/your-repo" target="_blank">
-          View on GitHub
-        </a>
-
-        <a class="btn secondary" href="#results">
-          Explore Results
-        </a>
-      </div>
+      <img src="images/terre_lune_soleil.jpg" class="hero-img" alt="right image">
     </div>
-  </section>
+
+    <p>
+      A machine learning project using celestial data collected from "ephemerides" and recorded daily tide coefficients
+      to predict tide coefficients using random forest methods.
+    </p>
+
+    <div class="buttons">
+      <a class="btn primary" href="https://github.com/your-username/your-repo" target="_blank">
+        View on GitHub
+      </a>
+
+      <a class="btn secondary" href="#results">
+        Explore Results
+      </a>
+    </div>
+
+  </div>
+</section>
 
   <!-- ABOUT -->
   <section id="about" class="section">
@@ -73,17 +82,67 @@
     </ul>
   </section>
 
+  <section id="data" class="section">
+    <h2>Data treatment</h2>
+
+    <p>
+      The raw dataset consists of the celestial positions of the Moon and the Sun:
+      \(\theta_S, \phi_S, R_{ST}, \theta_L, \phi_L, R_{LT}\),
+      where \(R\) denotes the distance between the Earth and the corresponding celestial object,
+      \(\theta\) is the ecliptic longitude, and \(\phi\) is the ecliptic latitude.
+    </p>
+
+    <p>
+      From these raw variables, we construct more meaningful features.
+      Since angles are periodic, representing them directly can be problematic.
+    </p>
+
+    <ul>
+      <li>
+        We encode periodicity using trigonometric transformations:
+        \(\cos(\theta_S)\) and \(\cos(\theta_L)\).
+      </li>
+    </ul>
+
+    <p>
+      Physical intuition suggests that tidal effects depend on the relative alignment of the Moon and the Sun.
+      When both are aligned, their contributions reinforce each other, leading to stronger tides.
+      When they are perpendicular, the effect is weaker.
+    </p>
+
+    <ul>
+      <li>
+        To capture this interaction, we introduce:
+        \(\cos(\theta_S - \theta_L)\).
+      </li>
+    </ul>
+    <p> 
+      With the same insights we could use the inverse of the distance squared as this is the term that appears
+      in Netwton's gravitationnal law but because we use decisions tree that only perform comparisons and
+      this function is monotonous it would not affect the predictions. 
+    </p>
+
+    <p>
+      Concerning the outputs, we dispose of the daily tide coefficients of two french cities: le Have and Brest.
+      Here we will focus on Brest since they depend less on the local geometry of the sea. Still, as depicted in the results
+      we have to shift the coefficient from the celestial positions from about two days because of the ocean's inertia
+      that introduces delay between actual tides and their causes.
+    </p>
+  </section>
+
   <!-- RESULTS -->
   <section id="results" class="section">
     <h2>Results</h2>
+    <p></p>
 
     <p>Comparison between predicted and real tide coefficients:</p>
 
-    <img src="images/test_predictions.svg" alt="Predictions vs real values" height="87"  width="100"/>
+    <img src="images/test_predictions.svg" alt="Predictions vs real values"/>
 
-    <p>Feature importance analysis:</p>
+    <p>Influence of the date of data: because of oceans' inertia, the important parameters are not the current 
+      configurations of the moon and the sun but rather the one 2 days ago as shown in the following graph:</p>
 
-    <img src="images/feature_importance.png" alt="Feature importance" />
+    <img src="images/influece_of_day.svg" alt="day dependance" />
   </section>
 
   <!-- TECH -->
